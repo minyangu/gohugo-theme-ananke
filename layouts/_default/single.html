@@ -12,13 +12,25 @@
           {{/*
           CurrentSection allows us to use the section title instead of inferring from the folder.
           https://gohugo.io/variables/page/#section-variables-and-methods
-          */}}
-        {{with .CurrentSection.Title }}{{. | upper }}{{end}}
+
+           {{with .CurrentSection.Title }}{{. | upper }}{{end}}
         &gt;&nbsp; {{- .Title -}}
+
+          */}}
+
+         <a href="/">Home</a>
+          {{ range (split .URL "/") }}
+              {{ if gt (len . ) 0 }}
+                  / <a href="/{{ . }}">{{ humanize (replace . "posts" "blog") }}</a>
+              {{ end }}
+          {{ end }}
       </p>
+
       <h1 class="f1 athelas mb1">
         {{- .Title -}}
       </h1>
+
+
 
       {{/* <p>Reading Time: {{ .Params.readingTime }} Minutes</p> */}}
 
